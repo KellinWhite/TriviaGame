@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+
+    //create 
+
+    <h1>Totally Trivial Trivia!</h1>
+
+    <p>Time Remaining: <span></span></p>
+
+    <!--Create a start button-->
+    <!--Create a timer counting back from 30 seconds -->
+    <!--When start button is clicked, questions are revealed and the timer starts counting down-->
+    <!--Create a final submit button-->
+    <!--After submit button is clicked, score is tallied under correct, incorrect, and unanswered categories -->
+    <!--Simultaneously when submit button is clicked, quiz questions will disappear and new boxes show the score categories-->
+    <!--Put a cool animal background on the page -->
+    <!--Add some CSS/Style properties to make the quiz fun -->
+
+    <form> 
+            <p>Which of these mammals can lay eggs?</p>
+            <input type="radio" name="ans" value="turle">Turtle<br>
+            <input type="radio" name="ans" value="cow">Cow<br>
+            <input type="radio" name="ans" value="platypus">Platypus<br>  
+            <input type="radio" name="ans" value="penguin">Penguin<br>  
+
+        </form>
+    
+        <form> 
+                <p>Which one of these animals has 4 noses?</p>
+                <input type="radio" name="ans" value="scorpion">Scorpion<br>
+                <input type="radio" name="ans" value="sloth">Sloth<br>
+                <input type="radio" name="ans" value="salamander">Salamander<br>  
+                <input type="radio" name="ans" value="slug">Slug<br>
+        
+        </form>
+
+        <form> 
+                <p>Which one of these animals does not have excellent night vision?</p>
+                <input type="radio" name="ans" value="gorilla">Gorilla<br>
+                <input type="radio" name="ans" value="racoon">Raccoon<br>
+                <input type="radio" name="ans" value="owl">Owl<br>  
+                <input type="radio" name="ans" value="alligagtor">Alligator<br>
+            
+        </form>
+        <form> 
+                <p>Which one of these animals literally has a heart inside of it's head? </p>
+                <input type="radio" name="ans" value="sacramento">Shrimp<br>
+                <input type="radio" name="ans" value="los angeles">Flamingo<br>
+                <input type="radio" name="ans" value="san francisco">Chinchilla<br>  
+                <input type="radio" name="ans" value="san francisco">Jellyfish<br>
+            
+                <input type="submit" value="Submit">
+        </form>
+
+
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+            <script type="text/javascript">
+                    var num = 10;
+                    $('p.timer').text(num);
+                    function decrease(){
+                        if (num > 0)
+                    num--; 
+                    $('p.timer').text(num);
+            
+                    if (num == 0){
+                    $('#content').text("out of time");
+                    $("input[type='submit']").attr('disabled', true);
+                    }
+                };
+                var timer = setInterval(decrease, 1*1000);
+            
+                $("input[type='submit']").on('click', function(){
+                    clearInterval(timer);
+                });
+            
+                $("input[type='submit']").on('click', function(){
+                    var g = $("input[name='city']:checked").val();
+            
+                    $('#content').text(g);
+                    
+                    if (g == "sacramento"){
+                        $('#content').text("correct");
+                    }
+                    else if (g != "sacramento"){
+                        $('#content').text("false");
+            
+                    }
+            
+                    if ("#content" == "false"){
+                        $("input[type='submit']").attr('disabled', true);
+                    }
+            
+                    event.preventDefault(); //prevent the page from refreshing
+
+</body>
+</html>
