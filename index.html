@@ -1,222 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Animal Trivia Game</title>
 
-
-<style type="text/css">
-
-#beginning {
-    display: block;
-}
-
-#questions {
-    display: none;
-}
-
-#finished {
-    display: none;
-}
-
-#ans1 {
-    display: none;
-}
-
-#ans2 {
-    display: none;
-}
-
-#ans3 {
-    display: none;
-}
-
-#ans4 {
-    display: none;
-}
-
-#timeLeft {
-    display:none;
-}
-
-</style>
-
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    
 </head>
+
 <body>
 
     <h1>Totally Trivial Trivia!</h1>
 
     <div id="timeLeft">
-    <p>Time Remaining: <span class="timer"></span></p>
+        <p>Time Remaining: <span class="timer"></span></p>
     </div>
 
- <!--Create a start button-->
+    <!--Create a start button-->
     <div id="beginning">
-    <button class="start"></button>Start!</button>
+        <button class="start">Start!</button>
     </div>
-   
-    <!--Put a cool animal background on the page -->
-    <!--Add some CSS/Style properties to make the quiz fun -->
 
 
-<div id="questions">
-    <form> 
+    <div id="questions">
+        <form>
             <p>Which of these mammals can lay eggs?</p>
             <input type="radio" name="egg" value="turle">Turtle<br>
             <input type="radio" name="egg" value="cow">Cow<br>
-            <input type="radio" name="egg" value="platypus">Platypus<br>  
-            <input type="radio" name="egg" value="penguin">Penguin<br>  
+            <input type="radio" name="egg" value="platypus">Platypus<br>
+            <input type="radio" name="egg" value="penguin">Penguin<br>
 
         </form>
-    
-        <form> 
-                <p>Which one of these animals has 4 noses?</p>
-                <input type="radio" name="nose" value="scorpion">Scorpion<br>
-                <input type="radio" name="nose" value="sloth">Sloth<br>
-                <input type="radio" name="nose" value="salamander">Salamander<br>  
-                <input type="radio" name="nose" value="slug">Slug<br>
-        
+
+        <form>
+            <p>Which one of these animals has 4 noses?</p>
+            <input type="radio" name="nose" value="scorpion">Scorpion<br>
+            <input type="radio" name="nose" value="sloth">Sloth<br>
+            <input type="radio" name="nose" value="salamander">Salamander<br>
+            <input type="radio" name="nose" value="slug">Slug<br>
+
         </form>
 
-        <form> 
-                <p>Which one of these animals does not have excellent night vision?</p>
-                <input type="radio" name="vision" value="gorilla">Gorilla<br>
-                <input type="radio" name="vision" value="racoon">Raccoon<br>
-                <input type="radio" name="vision" value="owl">Owl<br>  
-                <input type="radio" name="vision" value="alligagtor">Alligator<br>
-            
+        <form>
+            <p>Which one of these animals does not have excellent night vision?</p>
+            <input type="radio" name="vision" value="gorilla">Gorilla<br>
+            <input type="radio" name="vision" value="racoon">Raccoon<br>
+            <input type="radio" name="vision" value="owl">Owl<br>
+            <input type="radio" name="vision" value="alligagtor">Alligator<br>
+
         </form>
-        <form> 
-                <p>Which one of these animals literally has a heart inside of it's head? </p>
-                <input type="radio" name="heart" value="shrimp">Shrimp<br>
-                <input type="radio" name="heart" value="flamingo">Flamingo<br>
-                <input type="radio" name="heart" value="chinchilla">Chinchilla<br>  
-                <input type="radio" name="heart" value="jellyfish">Jellyfish<br>
-            
-                <input type="submit" value="Submit">
+        <form>
+            <p>Which one of these animals literally has a heart inside of it's head? </p>
+            <input type="radio" name="heart" value="shrimp">Shrimp<br>
+            <input type="radio" name="heart" value="flamingo">Flamingo<br>
+            <input type="radio" name="heart" value="chinchilla">Chinchilla<br>
+            <input type="radio" name="heart" value="jellyfish">Jellyfish<br>
+
+            <input type="submit" value="Submit">
         </form>
-</div>
+    </div>
 
 
-<p id="ans1"></p>
-<p id="ans2"></p>
-<p id="ans3"></p>
-<p id="ans4"></p>
+    <p id="ans1"></p>
+    <p id="ans2"></p>
+    <p id="ans3"></p>
+    <p id="ans4"></p>
 
-<div id="finished">
+    <div id="finished">
         <h2>All Done!</h2>
         <p>Correct Answers: <span class="correct">0</span></p>
         <p>Incorrect Answers: <span class="incorrect">0</span></p>
         <p>Unanswered Questions: <span class="unanswered">0</span></p>
-</div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/javascript">
-
-
+    </div>
     
-    //When start button is clicked, questions are revealed and the timer starts counting down, start button goes away-->
-    //Create a final submit button-->
-    //After submit button is clicked, score is tallied under correct, incorrect, and unanswered categories -->
-    //Simultaneously when submit button is clicked, quiz questions will disappear and new boxes show the score categories-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-   //Create a timer counting back from 30 seconds -->
-    var counter = 30;
-    $('span.timer').text(counter);
-    
-    $("button.start").on('click', function(){
-           $('#beginning').toggle();
-           $('#questions').toggle();
-           $('#timeLeft').toggle();
-
-	    var timer = setInterval(goDown, 1*1000);
-
-	    function goDown(){
-		    counter--;
-		    $('span.timer').text(counter);
-
-		    if (counter == 0){
-			    $("input[type='submit']").attr('disabled', true);
-			    clearInterval(timer);
-		    };
-         }
-    });
-            
-    //setting variables for each input/answer selected, then alerting on that result
-    $("input[type='submit']").on('click', function(){
-        var ans1 = $("input[name='egg']:checked").val();
-        var ans2 = $("input[name='nose']:checked").val();
-        var ans3 = $("input[name='vision']:checked").val();
-        var ans4 = $("input[name='heart']:checked").val();
-        var correctA = 0;
-        var incorrectA = 0;
-        var unansweredA = 0;
-
-        $('#finished').toggle();
-        $('#questions').toggle();
-        $('#timeLeft').toggle();
-
-		if (ans1 == 'platypus'){
-            $('#ans1').text('correct');
-            correctA++;
-            $('.correct').text(correctA);
-        }else if(ans1 == undefined){
-            $('#ans1').text('unanswered');
-            unansweredA++;
-            $('.unanswered').text(unansweredA);
-        }else{
-            $('#ans1').text('incorrect');
-            incorrectA++;
-            $('.incorrect').text(incorrectA);
-        }
-
-        if (ans2 == 'slug'){
-            $('#ans2').text('correct');
-            correctA++;
-            $('.correct').text(correctA);
-        }else if(ans2 == undefined){
-            $('#ans2').text('unanswered');
-            unansweredA++;
-            $('.unanswered').text(unansweredA);
-		}else{
-            $('#ans2').text('incorrect');
-            incorrectA++;
-            $('.incorrect').text(incorrectA);
-        }
-        if (ans3 == 'gorilla'){
-            $('#ans3').text('correct');
-            correctA++;
-            $('.correct').text(correctA);
-        }else if(ans3 == undefined){
-            $('#ans3').text('unanswered');
-            unansweredA++;
-            $('.unanswered').text(unansweredA);
-		}else{
-            $('#ans3').text('incorrect');
-            incorrectA++;
-            $('.incorrect').text(incorrectA);
-        }
-
-        if (ans4 == 'shrimp'){
-            $('#ans4').text('correct');
-            correctA++;
-            $('.correct').text(correctA);
-        }else if(ans4 == undefined){
-            $('#ans4').text('unanswered');
-            unansweredA++;
-            $('.unanswered').text(unansweredA);
-		}else{
-            $('#ans4').text('incorrect');
-            incorrectA++;
-            $('.incorrect').text(incorrectA);
-        }
-            
-         event.preventDefault(); //prevent the page from refreshing
-    })
-
-</script>
+    <script type="text/javascript" src="assets/javascript/app.js"></script>
 
 </body>
+
 </html>
